@@ -65,7 +65,7 @@ body {
   transform-style: preserve-3d;
   /*设置为3D环境*/
   /*自定义动画：名称，时间，匀速，无限循环*/
-  animation: rot 20s linear infinite;
+  animation: rot 6s linear infinite;
   /* infinite */
   pointer-events: none;
   display: none;
@@ -102,7 +102,7 @@ body {
   position: relative;
   transform-style: preserve-3d;
   /*设置为3D环境*/
-  transform: translateX(70px) translateY(110px) translateZ(120px);
+  transform: translateX(70px) translateY(110px) translateZ(80px);
   
 }
 
