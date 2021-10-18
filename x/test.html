@@ -7,8 +7,15 @@
 
 <body>
 
-  <h1 id="h1" class="showCanvans"></h1>
+  <h1 id="h1" class="showCanvans">爱你呦~</h1>
   <canvas class="showCanvans"></canvas>
+  <dialog open class="pageDialog" style="position: relative;">
+    <span class="title1">你喜欢我吗?</span>
+    <span class="title2">为什么不喜欢我呀~ 你再想想~</span>
+    <div class="dialogButton" style="position: absolute; bottom: 10px; right: 10px;">
+    <button style="font-size: 14px;padding:2px 5px;border-radius: 8px;border: 2px solid red;" onclick="okClick()">喜欢</button>
+    <button style="font-size: 14px;padding: 2px 5px;border-radius: 8px;" onclick="cancleClick()">不喜欢</button></div>
+  </dialog>
   <script>
     var canvas = document.querySelector("canvas"),
       ctx = canvas.getContext("2d");
@@ -103,20 +110,20 @@
     window.addEventListener("resize", onResize);
     requestAnimationFrame(render);
 
-    window.onload = function starttime() {
-      time(h1, '2017,7,4');     // 在一起的时间
-      ptimer = setTimeout(starttime, 1000); // 添加计时器
-    }
+    // window.onload = function starttime() {
+    //   time(h1, '2017,7,4');     // 在一起的时间
+    //   ptimer = setTimeout(starttime, 1000); // 添加计时器
+    // }
 
-    function time(obj, futimg) {
-      obj.innerHTML = "爱你呦~"
-      return true;
-    }
+    // function time(obj, futimg) {
+    //   obj.innerHTML = "爱你呦~"
+    //   return true;
+    // }
   </script>
 
-  <div class="btn-group" role="group" aria-label="first-group">
+  <!-- <div class="btn-group" role="group" aria-label="first-group">
     <button type="button" class="btn roundButtom" onclick="onRoundButtonClick()">来点我呀</button>
-  </div>
+  </div> -->
   <div class="mainCir">
     <div class="disc1"></div>
     <div class="disc2"></div>

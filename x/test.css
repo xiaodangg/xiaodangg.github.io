@@ -176,3 +176,32 @@ h1 span{
   display: none;
   z-index: 10;
 }
+
+.pageDialog {
+  width: 350px;
+  height: 150px;
+  background-color: #e2f5e08f;
+  border: 4px solid red;
+  padding: 10px;
+  box-shadow: 10px 10px 10px #888888;
+  border-radius: 8px;
+}
+
+.title1 {
+  font-family:"arial, sans-serif";
+  font-size: 20px;
+}
+.title2 {
+  display: none;
+  font-family:"arial, sans-serif";
+  animation: masked-animation 4s linear infinite;
+  font-size: 20px;
+}
+@keyframes masked-animation {
+  0% {
+      background-position: 0  0;
+  }
+  100% {
+      background-position: -100%  0;
+  }
+}
