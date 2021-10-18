@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<head>
+  <script type="text/javascript" src="test.js"></script>
+  <link rel="stylesheet" href="test.css">
+</head>
+
+<body>
+
+  <h1 id="h1" class="showCanvans">爱你呦~</h1>
+  <canvas class="showCanvans"></canvas>
+  <dialog open class="pageDialog" style="position: relative;">
+    <span class="title1">你喜欢我吗?</span>
+    <span class="title2">为什么不喜欢我呀~ 你再想想~</span>
+    <div class="dialogButton" style="position: absolute; bottom: 10px; right: 10px;">
+    <button style="font-size: 14px;padding:2px 5px;border-radius: 8px;border: 2px solid red;margin-right: 20px;" onclick="okClick()">喜欢</button>
+    <button style="font-size: 14px;padding: 2px 5px;border-radius: 8px;" onclick="cancleClick()">不喜欢</button></div>
+  </dialog>
+  <script>
+    var canvas = document.querySelector("canvas"),
+      ctx = canvas.getContext("2d");
+
+    var ww, wh;
+
+    function onResize() {
+      ww = canvas.width = window.innerWidth;
+      wh = canvas.height = window.innerHeight;
+    }
+
+    ctx.strokeStyle = "red";
+    ctx.shadowBlur = 25;
+    ctx.shadowColor = "hsla(0, 100%, 60%,0.5)";
+
+    var precision = 100;
+    var hearts = [];
+    var mouseMoved = false;
+    function onMove(e) {
+      mouseMoved = true;
+      if (e.type === "touchmove") {
+        hearts.push(new Heart(e.touches[0].clientX, e.touches[0].clientY));
+        hearts.push(new Heart(e.touches[0].clientX, e.touches[0].clientY));
+      }
+      else {
+        hearts.push(new Heart(e.clientX, e.clientY));
+        hearts.push(new Heart(e.clientX, e.clientY));
+      }
+    }
+
+    var Heart = function (x, y) {
+      this.x = x || Math.random() * ww;
+      this.y = y || Math.random() * wh;
+      this.size = Math.random() * 2 + 1;
+      this.shadowBlur = Math.random() * 10;
+      this.speedX = (Math.random() + 0.2 - 0.6) * 8;
+      this.speedY = (Math.random() + 0.2 - 0.6) * 8;
+      this.speedSize = Math.random() * 0.05 + 0.01;
+      this.opacity = 1;
+      this.vertices = [];
+      for (var i = 0; i < precision; i++) {
+        var step = (i / precision - 0.5) * (Math.PI * 2);
+        var vector = {
+          x: (15 * Math.pow(Math.sin(step), 3)),
+          y: -(13 * Math.cos(step) - 5 * Math.cos(2 * step) - 2 * Math.cos(3 * step) - Math.cos(4 * step))
+        }
+        this.vertices.push(vector);
+      }
+    }
+
+    Heart.prototype.draw = function () {
+      this.size -= this.speedSize;
+      this.x += this.speedX;
+      this.y += this.speedY;
+      ctx.save();
+      ctx.translate(-1000, this.y);
+      ctx.scale(this.size, this.size);
+      ctx.beginPath();
+      for (var i = 0; i < precision; i++) {
+        var vector = this.vertices[i];
+        ctx.lineTo(vector.x, vector.y);
+      }
+      ctx.globalAlpha = this.size;
+      ctx.shadowBlur = Math.round((3 - this.size) * 10);
+      ctx.shadowColor = "hsla(0, 100%, 60%,0.5)";
+      ctx.shadowOffsetX = this.x + 1000;
+      ctx.globalCompositeOperation = "screen"
+      ctx.closePath();
+      ctx.fill()
+      ctx.restore();
+    };
+
+
+    function render(a) {
+      requestAnimationFrame(render);
+
+      hearts.push(new Heart())
+      ctx.clearRect(0, 0, ww, wh);
+      for (var i = 0; i < hearts.length; i++) {
+        hearts[i].draw();
+        if (hearts[i].size <= 0) {
+          hearts.splice(i, 1);
+          i--;
+        }
+      }
+    }
+
+
+    onResize();
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("touchmove", onMove);
+    window.addEventListener("resize", onResize);
+    requestAnimationFrame(render);
+
+    // window.onload = function starttime() {
+    //   time(h1, '2017,7,4');     // 在一起的时间
+    //   ptimer = setTimeout(starttime, 1000); // 添加计时器
+    // }
+
+    // function time(obj, futimg) {
+    //   obj.innerHTML = "爱你呦~"
+    //   return true;
+    // }
+  </script>
+
+  <!-- <div class="btn-group" role="group" aria-label="first-group">
+    <button type="button" class="btn roundButtom" onclick="onRoundButtonClick()">来点我呀</button>
+  </div> -->
+  <div class="mainCir">
+    <div class="disc1"></div>
+    <div class="disc2"></div>
+    <div class="square"></div>
+  </div>
+
+  <div id="heart3d">
+    <div id="cube">
+      <div><img src="c2.jpg" style="width: 150px; height: 150px;" /></div>
+      <div><img src="c2.jpg" style="width: 150px; height: 150px;" /></div>
+      <div><img src="c2.jpg" style="width: 150px; height: 150px;" /></div>
+      <div><img src="c2.jpg" style="width: 150px; height: 150px;" /></div>
+      <div><img src="c2.jpg" style="width: 150px; height: 150px;" /></div>
+      <div><img src="c2.jpg" style="width: 150px; height: 150px;" /></div>
+    </div>
+
+  </div>
+  <script type="text/javascript">
+    var heart3d = document.getElementById("heart3d");
+    for (var i = 0; i < 36; i++) {
+      /*创建子元素*/
+      var oDiv = document.createElement("div");
+      /*添加类名*/
+      oDiv.className = "heart";
+      oDiv.style.transform = "rotateY(" + i * 10 + "deg)rotateZ(45deg) translateX(30px)";
+      /*添加子元素*/
+      heart3d.appendChild(oDiv);
+    }
+  </script>
+</body>
+<script>
+
+</script>
+
+</html>
