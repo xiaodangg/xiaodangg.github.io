@@ -36,8 +36,13 @@ function onRoundButtonClick(e) {
 function showMainCir() {
   var heart = document.getElementById('heart3d')
   var button1 = document.getElementsByClassName("roundButtom")[0];
+  var showCanvans1 = document.getElementsByClassName("showCanvans")[0];
+  var showCanvans2 = document.getElementsByClassName("showCanvans")[1];
+  
   // mainCir.style.left = button1.style.left
   // mainCir.style.top = button1.style.top
   button1.style.display = "none";
   heart.style.display = "block";
+  showCanvans1.style.display = "block";
+  showCanvans2.style.display = "block";
 }

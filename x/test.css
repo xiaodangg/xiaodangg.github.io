@@ -9,7 +9,7 @@ body {
 .roundButtom {
   width: auto;
   padding: 5px;
-  font-size: 14px;
+  font-size: 30px;
   color: red;
   border-color: red;
   border-radius: 8px;
@@ -68,6 +68,10 @@ body {
   animation: rot 3s linear infinite;
   pointer-events: none;
   display: none;
+  z-index: 9999;
+  position: absolute;
+  top: 2%;
+  left: 48%;
 }
 
 @keyframes rot {
@@ -145,4 +149,30 @@ body {
 
 #cube div:nth-child(6) {
   transform: translateZ(-50px);
+}
+
+
+body{
+  overflow: hidden;
+  margin: 0;
+}
+h1{
+  position: fixed;
+  top: 60%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transform:translateY(-50%);
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 40px;
+  color: #c70012;
+  padding: 0 20px;
+}
+h1 span{
+    font-size:20px;
+}
+
+.showCanvans {
+  display: none;
+  z-index: 10;
 }
