@@ -2,10 +2,11 @@ window.onload = function () {
   this.radomNum();
 };
 function radomNum() {
-  var num1 = Math.floor(Math.random() * 75).toString();
+  var num1 = Math.floor(Math.random() * 70).toString();
   var num2 = Math.floor(Math.random() * 80).toString();
   var button = document.getElementsByClassName("pageDialog")[0];
   button.style.position = "absolute";
+  num1 = num1 > 60 ? 60 : num1
   button.style.left = num1 + "vw";
   button.style.top = num2 + "vh";
 }
